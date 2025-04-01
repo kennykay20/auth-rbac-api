@@ -1,0 +1,14 @@
+@crud_api_HostAddress = http://localhost:5283
+
+GET {{crud_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{crud_api_HostAddress}}/api/v1/authentication/login
+Accept: application/json
+
+{
+  "email": "kenny8@gmail.com",
+  "password": "Password8"
+}
