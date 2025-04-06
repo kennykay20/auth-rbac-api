@@ -19,4 +19,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
+EXPOSE 5284
+
 ENTRYPOINT [ "dotnet", "crud-api.dll" ]

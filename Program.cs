@@ -11,6 +11,12 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Kestrel to listen on port 5283
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5284); // Binds to all network interfaces on port 5283
+});
+
 // Add services to the container.
 // Add CORS policy
 builder.Services.AddCors(options =>
@@ -54,6 +60,7 @@ builder.Services.AddScoped<TestDemo>();
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -69,13 +76,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-// Explicitly configure the URL for the application to listen on port 5283
-app.Lifetime.ApplicationStarted.Register(() =>
-{
-    var url = "http://0.0.0.0:5283"; // Binding to all network interfaces
-    Console.WriteLine($"Application started and listening on: {url}");
-});
 
 app.Run();
 
