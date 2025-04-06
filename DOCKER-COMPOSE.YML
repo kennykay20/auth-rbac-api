@@ -6,7 +6,7 @@ services:
     image: kennybowendocker/csharp-crud-app:1.0
     build: .
     ports:
-      - "8080:8081"
+      - "5283:5283"
     environment:
       ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=postgresTest;Username=postgres;Password=password1"
       Secrets__ACCESS_TOKEN_SECRET: "400ed3e82d13ec3bb82c4f3bf15e79e76fc11f9cc1ee209cefcb0b3782b6a45cd1745fec95dd68f1526b810f6272138c9e"
