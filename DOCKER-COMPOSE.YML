@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  csharp-crud-app:
+    container_name: csharp-crud-app
+    image: kennybowendocker/csharp-crud-app:1.0
+    build: .
+    ports:
+      - "8080:8081"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=postgresTest;Username=postgres;Password=password1"
+      Secrets__ACCESS_TOKEN_SECRET: "400ed3e82d13ec3bb82c4f3bf15e79e76fc11f9cc1ee209cefcb0b3782b6a45cd1745fec95dd68f1526b810f6272138c9e"
+      Secrets__REFRESH_TOKEN_SECRET: "060756a8-9667-4b49-965b-f99f37ccc9d9"
+      Jwt__Issuer: "https://yourdomain.com"
+      Jwt__Audience: "https://yourdomain.com"
+      Jwt__Key: "N61Do6WzJ4ZyONUEK7IcmE8Raikbcw4fo68KJC/+ZQSSpRhrTqWfc4rXVYGvm4vTdttzjjIgOwFeXeKgIu2Hng==."
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:15
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password1
+      POSTGRES_DB: postgresTest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
