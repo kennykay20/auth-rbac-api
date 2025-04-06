@@ -70,5 +70,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Explicitly configure the URL for the application to listen on port 5283
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    var url = "http://0.0.0.0:5283"; // Binding to all network interfaces
+    Console.WriteLine($"Application started and listening on: {url}");
+});
+
 app.Run();
 
