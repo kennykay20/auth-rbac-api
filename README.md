@@ -56,11 +56,11 @@ This project is an authentication and role-based access control (RBAC) API built
 
 1. Build the Docker image:
 
-- docker-compose build
+- docker compose build
 
 2. Run the application:
 
-- docker-compose up
+- docker compose up
 
 - The app will be available at http://localhost:5284
 
@@ -104,6 +104,8 @@ This project is an authentication and role-based access control (RBAC) API built
 "Email": "test@gmail.com",
 "Password": "Securepassword123"
 }
+
+# Example response
 
 {
 "Success": true,
